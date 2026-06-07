@@ -1,6 +1,6 @@
 <!-- title, subtitle, tags, url, image -->
 ---
-const { title, subtitle, tags, urltype, url, image } = Astro.props;
+const { title, subtitle, tags, urltype, url } = Astro.props;
 ---
 
 <div class="card" data-project-card>
@@ -16,7 +16,7 @@ const { title, subtitle, tags, urltype, url, image } = Astro.props;
             <p class="subtitle">{subtitle}</p>
         </div>
         <div class="tags">
-            {tags.map((tag) => (
+            {tags.map((tag : string) => (
                 <p>{tag}</p>
             ))}
         </div>

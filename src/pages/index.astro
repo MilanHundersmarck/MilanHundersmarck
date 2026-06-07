@@ -3,11 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 
-const projects = Object.values(import.meta.glob('../content/projects/*.md', { eager: true }))
+const projects = Object.values(import.meta.glob('../content/projects/*.md', { eager: true })) as any[];
 ---
 
 <Layout>
-	<!-- TODO: Dark mode toggle | Later -->
 	<div class="header">
 		<h1>Milan Hundersmarck</h1>
 		<div class="header-social">
