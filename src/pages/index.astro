@@ -1,11 +1,61 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projects = Object.values(import.meta.glob('../content/projects/*.md', { eager: true }))
 ---
 
 <Layout>
-	<Welcome />
+	<!-- TODO: Dark mode toggle | Later -->
+	<div class="header">
+		<h1>Milan Hundersmarck</h1>
+		<div class="header-social">
+			<SocialLinks ariaLabel="Header social links" />
+		</div>
+	</div>
+	<p class="subtitle">software developer &#x2022; i like building things</p>
+
+	<h2>PROJECTS</h2>
+	<div class="projects">
+		{projects.map(project => <ProjectCard title={project.frontmatter.title} subtitle={project.frontmatter.subtitle} tags={project.frontmatter.tags} urltype={project.frontmatter.urltype} url={project.frontmatter.url} />)}
+	</div>
 </Layout>
+
+<style>
+	.subtitle {
+		font-size: 15px;
+	}
+
+	h2 {
+		font-size: 13px;
+		color: var(--text-faint);
+	}
+
+	h2:first-of-type {
+		margin-top: 50px;
+	}
+
+	p {
+		margin-top: 0.25rem;
+	}
+
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.header h1 {
+		margin: 0;
+		line-height: 1;
+	}
+
+	@media (max-width: 640px) {
+		.header-social {
+			display: none;
+		}
+	}
+</style>
