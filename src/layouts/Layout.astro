@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+
+const { title = 'Milan Hundersmarck' } = Astro.props;
 ---
 
 <!doctype html>
@@ -8,9 +10,13 @@ import Footer from '../components/Footer.astro';
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<title>Astro Basics</title>
+
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		
+		<title>{title}</title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,4 +35,3 @@ import Footer from '../components/Footer.astro';
 		<Footer />
 	</body>
 </html>
-

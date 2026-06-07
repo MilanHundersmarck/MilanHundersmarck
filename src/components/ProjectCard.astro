@@ -3,7 +3,7 @@
 const { title, subtitle, tags, urltype, url, image } = Astro.props;
 ---
 
-<div class="card">
+<div class="card" data-project-card>
     <div class="titlerow">
         <div class="titleblock">
             <div class="title-link-row">
@@ -24,12 +24,24 @@ const { title, subtitle, tags, urltype, url, image } = Astro.props;
 </div>
 
 <script>
-    const card = document.querySelector(".card");
-    const link = card?.querySelector(".link a") as HTMLAnchorElement;
-    card?.addEventListener("click", () => {
-        if (link?.href) {
-            window.open(link.href, '_blank')?.focus();
+    document.querySelectorAll("[data-project-card]").forEach((card) => {
+        if (!(card instanceof HTMLElement) || card.dataset.cardBound === "true") {
+            return;
         }
+
+        const link = card.querySelector(".link a");
+        if (!(link instanceof HTMLAnchorElement)) {
+            return;
+        }
+
+        card.dataset.cardBound = "true";
+        card.addEventListener("click", (event) => {
+            if (event.target instanceof HTMLElement && event.target.closest("a")) {
+                return;
+            }
+
+            window.open(link.href, "_blank")?.focus();
+        });
     });
 </script>
 
